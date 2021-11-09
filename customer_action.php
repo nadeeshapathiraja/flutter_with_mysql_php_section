@@ -58,5 +58,48 @@ if("GET_ALL" ==$action){
 
 }
 
+//Add users
+if("ADD_EMP" == $action){
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $sql = "INSERT INTO $table(first_name,last_name,email) VALUES ('$first_name','$last_name','$email')";
+    $result =$con->query($sql);
+    echo "Success";
+    $con->close();
+    return;
+}
+
+//Update user
+if("UPDATE_EMP" == $action){
+    $emp_id = $_POST['_emp_id'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $sql = "UPDATE$table SET first_name= '$first_name', last_name='$last_name', email ='$email' WHERE id = '$email_id'";
+    if($con->query($sql)==TRUE){
+        echo "SUCCESS";
+    }
+    else{
+        echo "Error";
+    }
+    $con->close();
+    return;
+
+}
+
+//Delete user
+if('DELETE_EMP' ==$action){
+    $emp_id = $_POST['emp_id'];
+    $sql = "DELETE FROM $table WHERE id = $emp_id";
+    if($con->query($sql)==TRUE){
+        echo "SUCCESS";
+    }
+    else{
+        echo "Error";
+    }
+    $con->close();
+    return;
+}
+
 
 ?>
